@@ -3,86 +3,44 @@
 ## bahot se tarike hai par model wala easy hai 
 ### 4 steps me popups taiyaar
 
-```react
+#### overlay model usestate openmodel closedmodel (main part hai )
 
+```react.js
 
 import React, { useState } from "react";
 
 function App() {
-  // State for modal visibility
+  // Step 1: State to control modal visibility
   const [showModal, setShowModal] = useState(false);
 
-  // State for form fields
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-  });
-
-  // Function to handle form input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  // Function to handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Submitted:", formData);
-    // Close the modal after submission
-    setShowModal(false);
-  };
+  // Step 2: Functions to handle modal open and close
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
   return (
     <div className="App">
-      {/* Button to open modal */}
-      <button onClick={() => setShowModal(true)}>Open Form Modal</button>
+// button cretate karna pdega
+      {/* Button to Open Modal */}
+      <button onClick={openModal}>Open Modal</button>
 
-      {/* Modal */}
+same model for any bas ui jaisa chaiyeh vaise code likhe
+      {/* Step 4: Modal */}
       {showModal && (
         <div style={styles.overlay}>
           <div style={styles.modal}>
-            <h2>Fill the Form</h2>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label>Name:</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <label>Email:</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <button type="submit">Submit</button>
-              <button
-                type="button"
-                onClick={() => setShowModal(false)}
-                style={{ marginLeft: "10px" }}
-              >
-                Cancel
-              </button>
-            </form>
+            <h2>Modal Title</h2>
+            <p>This is the modal content.</p>
+            <button onClick={closeModal}>Close</button>
           </div>
         </div>
       )}
+
+
     </div>
   );
 }
 
-// Styles for Modal and Overlay
+// Step 3: Styles for Modal and Overlay
 const styles = {
   overlay: {
     position: "fixed",
@@ -106,6 +64,7 @@ const styles = {
 };
 
 export default App;
+
 ```
 
 
